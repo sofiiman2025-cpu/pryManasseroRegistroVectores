@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpConsulta = new System.Windows.Forms.GroupBox();
+            this.btnListar = new System.Windows.Forms.Button();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +41,6 @@
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtPromedio = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.btnListar = new System.Windows.Forms.Button();
             this.grpConsulta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
@@ -56,6 +56,16 @@
             this.grpConsulta.TabIndex = 0;
             this.grpConsulta.TabStop = false;
             this.grpConsulta.Text = "Consulta de datos";
+            this.grpConsulta.Enter += new System.EventHandler(this.grpConsulta_Enter);
+            // 
+            // btnListar
+            // 
+            this.btnListar.Location = new System.Drawing.Point(514, 651);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(155, 34);
+            this.btnListar.TabIndex = 1;
+            this.btnListar.Text = "Listar Deudores";
+            this.btnListar.UseVisualStyleBackColor = true;
             // 
             // dgvDatos
             // 
@@ -147,15 +157,6 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(100, 26);
             this.txtCantidad.TabIndex = 6;
-            // 
-            // btnListar
-            // 
-            this.btnListar.Location = new System.Drawing.Point(514, 651);
-            this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(155, 34);
-            this.btnListar.TabIndex = 1;
-            this.btnListar.Text = "Listar Deudores";
-            this.btnListar.UseVisualStyleBackColor = true;
             // 
             // frmClientesDeudores
             // 

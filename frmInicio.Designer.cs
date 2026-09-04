@@ -53,13 +53,13 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(196, 34);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.acercaDeToolStripMenuItem.Text = "Acerca de ";
             // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(196, 34);
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             // 
             // clientesToolStripMenuItem
@@ -78,24 +78,28 @@
             this.agregarNuevosClientesToolStripMenuItem.Name = "agregarNuevosClientesToolStripMenuItem";
             this.agregarNuevosClientesToolStripMenuItem.Size = new System.Drawing.Size(383, 34);
             this.agregarNuevosClientesToolStripMenuItem.Text = "Agregar nuevos clientes";
+            this.agregarNuevosClientesToolStripMenuItem.Click += new System.EventHandler(this.agregarNuevosClientesToolStripMenuItem_Click);
             // 
             // listadoDeTodosLosClientesToolStripMenuItem
             // 
             this.listadoDeTodosLosClientesToolStripMenuItem.Name = "listadoDeTodosLosClientesToolStripMenuItem";
             this.listadoDeTodosLosClientesToolStripMenuItem.Size = new System.Drawing.Size(383, 34);
             this.listadoDeTodosLosClientesToolStripMenuItem.Text = "Listado de todos los clientes";
+            this.listadoDeTodosLosClientesToolStripMenuItem.Click += new System.EventHandler(this.listadoDeTodosLosClientesToolStripMenuItem_Click);
             // 
             // listadoDeClientesDeudoresToolStripMenuItem
             // 
             this.listadoDeClientesDeudoresToolStripMenuItem.Name = "listadoDeClientesDeudoresToolStripMenuItem";
             this.listadoDeClientesDeudoresToolStripMenuItem.Size = new System.Drawing.Size(383, 34);
             this.listadoDeClientesDeudoresToolStripMenuItem.Text = "Listado de clientes deudores";
+            this.listadoDeClientesDeudoresToolStripMenuItem.Click += new System.EventHandler(this.listadoDeClientesDeudoresToolStripMenuItem_Click);
             // 
             // listadoDeClientesOrdenadosPorToolStripMenuItem
             // 
             this.listadoDeClientesOrdenadosPorToolStripMenuItem.Name = "listadoDeClientesOrdenadosPorToolStripMenuItem";
             this.listadoDeClientesOrdenadosPorToolStripMenuItem.Size = new System.Drawing.Size(383, 34);
             this.listadoDeClientesOrdenadosPorToolStripMenuItem.Text = "Listado de clientes ordenados por";
+            this.listadoDeClientesOrdenadosPorToolStripMenuItem.Click += new System.EventHandler(this.listadoDeClientesOrdenadosPorToolStripMenuItem_Click);
             // 
             // ventasToolStripMenuItem
             // 

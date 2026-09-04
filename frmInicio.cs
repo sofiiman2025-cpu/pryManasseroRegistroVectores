@@ -16,5 +16,29 @@ namespace pryManasseroRegistroVectores
         {
             InitializeComponent();
         }
+
+        private void agregarNuevosClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           frmCargarClientes frmCargarClientes = new frmCargarClientes();
+            frmCargarClientes.ShowDialog(); 
+        }
+
+        private void listadoDeTodosLosClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListadoClientes frmListadoClientes = new frmListadoClientes();
+            frmListadoClientes.ShowDialog();
+        }
+
+        private void listadoDeClientesDeudoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmClientesDeudores frmClientesDeudores = new frmClientesDeudores();
+            frmClientesDeudores.ShowDialog();
+        }
+
+        private void listadoDeClientesOrdenadosPorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGestion frmGestion = new frmGestion();
+            frmGestion.ShowDialog();
+        }
     }
 }

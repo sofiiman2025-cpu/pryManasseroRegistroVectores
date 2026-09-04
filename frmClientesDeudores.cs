@@ -16,5 +16,10 @@ namespace pryManasseroRegistroVectores
         {
             InitializeComponent();
         }
+
+        private void grpConsulta_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

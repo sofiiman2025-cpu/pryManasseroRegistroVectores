@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace pryManasseroRegistroVectores
 {
-    public partial class Form1 : Form
+    public partial class frmCargarClientes : Form
     {
-        public Form1()
+        public frmCargarClientes()
         {
             InitializeComponent();
         }
@@ -25,6 +25,11 @@ namespace pryManasseroRegistroVectores
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCargar_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
