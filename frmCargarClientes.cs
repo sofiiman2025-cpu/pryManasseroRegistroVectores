@@ -29,7 +29,12 @@ namespace pryManasseroRegistroVectores
 
         private void btnCargar_Click(object sender, EventArgs e)
         {
-            
+            clsVector.Precarga();
+
+            txtCodigo.Clear();
+            txtNombre.Clear();
+            txtDeuda.Clear();
+            txtLimite.Clear();
         }
     }
 }

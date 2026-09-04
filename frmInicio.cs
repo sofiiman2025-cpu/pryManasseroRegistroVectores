@@ -40,5 +40,10 @@ namespace pryManasseroRegistroVectores
             frmGestion frmGestion = new frmGestion();
             frmGestion.ShowDialog();
         }
+
+        private void frmInicio_Load(object sender, EventArgs e)
+        {
+            // Inicialización al cargar el formulario; no abrir el mismo formulario aquí.
+        }
     }
 }

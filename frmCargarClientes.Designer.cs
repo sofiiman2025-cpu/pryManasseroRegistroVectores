@@ -61,9 +61,9 @@
             // 
             // btnCargar
             // 
-            this.btnCargar.Location = new System.Drawing.Point(566, 238);
+            this.btnCargar.Location = new System.Drawing.Point(566, 233);
             this.btnCargar.Name = "btnCargar";
-            this.btnCargar.Size = new System.Drawing.Size(75, 35);
+            this.btnCargar.Size = new System.Drawing.Size(132, 40);
             this.btnCargar.TabIndex = 8;
             this.btnCargar.Text = "Cargar";
             this.btnCargar.UseVisualStyleBackColor = true;
@@ -134,14 +134,14 @@
             this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código";
             // 
-            // Form1
+            // frmCargarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(760, 349);
             this.Controls.Add(this.grpCarga);
-            this.Name = "Form1";
+            this.Name = "frmCargarClientes";
             this.Text = "Carga de Clientes";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grpCarga.ResumeLayout(false);

@@ -31,6 +31,15 @@ namespace pryManasseroRegistroVectores
             Decimal promedioDeuda = 0;
 
             dgvDatos.Rows.Clear();
+            if (clsVector.indice == 0)
+            {
+                // No hay clientes cargados: mostrar ceros y evitar división por cero
+                lblDeuda.Text = 0.ToString("N2");
+                lblCant.Text = 0.ToString();
+                lblPromedioDeuda.Text = 0.ToString("N2");
+                return;
+            }
+
             for (int i = 0; i < clsVector.indice; i++)
             {
                 dgvDatos.Rows.Add(
@@ -46,9 +55,9 @@ namespace pryManasseroRegistroVectores
             promedioDeuda = totalDeuda / clsVector.indice;
             Cantclientes = clsVector.indice;
 
-            lblDeuda.Text = totalDeuda.ToString();
+            lblDeuda.Text = totalDeuda.ToString("N2");
             lblCant.Text = Cantclientes.ToString();
-            lblPromedioDeuda.Text = promedioDeuda   .ToString();
+            lblPromedioDeuda.Text = promedioDeuda.ToString("N2");
         }
 
         private void txtCantidad_TextChanged(object sender, EventArgs e)

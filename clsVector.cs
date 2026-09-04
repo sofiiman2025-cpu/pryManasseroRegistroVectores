@@ -49,7 +49,7 @@ namespace pryManasseroRegistroVectores
         {
             if (indice < clientes.Length)
             {
-                //Busqueda Secuencial
+               
                 Int32 i = 0;
                 while (i < indice && clientes[i].codigo != Convert.ToInt32(cod))
                 {

@@ -16,7 +16,7 @@ namespace pryManasseroRegistroVectores
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmCargarClientes());
+            Application.Run(new frmInicio());
         }
     }
 }

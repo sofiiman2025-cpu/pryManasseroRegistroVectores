@@ -131,29 +131,29 @@
             // 
             // lblDeuda
             // 
-            this.lblDeuda.AutoSize = true;
-            this.lblDeuda.Location = new System.Drawing.Point(601, 385);
+            this.lblDeuda.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblDeuda.Location = new System.Drawing.Point(581, 381);
             this.lblDeuda.Name = "lblDeuda";
-            this.lblDeuda.Size = new System.Drawing.Size(14, 24);
+            this.lblDeuda.Size = new System.Drawing.Size(96, 31);
             this.lblDeuda.TabIndex = 1;
             this.lblDeuda.Text = ".";
             // 
             // lblPromedioDeuda
             // 
-            this.lblPromedioDeuda.AutoSize = true;
-            this.lblPromedioDeuda.Location = new System.Drawing.Point(601, 497);
+            this.lblPromedioDeuda.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPromedioDeuda.Location = new System.Drawing.Point(581, 497);
             this.lblPromedioDeuda.Name = "lblPromedioDeuda";
-            this.lblPromedioDeuda.Size = new System.Drawing.Size(14, 24);
+            this.lblPromedioDeuda.Size = new System.Drawing.Size(96, 30);
             this.lblPromedioDeuda.TabIndex = 2;
             this.lblPromedioDeuda.Text = ".";
             this.lblPromedioDeuda.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblCant
             // 
-            this.lblCant.AutoSize = true;
-            this.lblCant.Location = new System.Drawing.Point(601, 441);
+            this.lblCant.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblCant.Location = new System.Drawing.Point(581, 437);
             this.lblCant.Name = "lblCant";
-            this.lblCant.Size = new System.Drawing.Size(14, 24);
+            this.lblCant.Size = new System.Drawing.Size(96, 33);
             this.lblCant.TabIndex = 3;
             this.lblCant.Text = ".";
             // 
@@ -171,7 +171,6 @@
             this.Text = "frmListadoClientes";
             this.Load += new System.EventHandler(this.frmListadoClientes_Load);
             this.grpConsulta.ResumeLayout(false);
-            this.grpConsulta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
