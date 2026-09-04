@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.txtPromedio = new System.Windows.Forms.TextBox();
-            this.txtTotal = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.lblPromedio = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
@@ -40,30 +37,12 @@
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Limite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Deuda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblDeuda = new System.Windows.Forms.Label();
+            this.lblPromedioDeuda = new System.Windows.Forms.Label();
+            this.lblCant = new System.Windows.Forms.Label();
             this.grpConsulta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Location = new System.Drawing.Point(618, 457);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(100, 26);
-            this.txtCantidad.TabIndex = 13;
-            // 
-            // txtPromedio
-            // 
-            this.txtPromedio.Location = new System.Drawing.Point(618, 523);
-            this.txtPromedio.Name = "txtPromedio";
-            this.txtPromedio.Size = new System.Drawing.Size(100, 26);
-            this.txtPromedio.TabIndex = 12;
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.Location = new System.Drawing.Point(618, 391);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(100, 26);
-            this.txtTotal.TabIndex = 11;
             // 
             // lblCantidad
             // 
@@ -94,6 +73,9 @@
             // 
             // grpConsulta
             // 
+            this.grpConsulta.Controls.Add(this.lblCant);
+            this.grpConsulta.Controls.Add(this.lblPromedioDeuda);
+            this.grpConsulta.Controls.Add(this.lblDeuda);
             this.grpConsulta.Controls.Add(this.dgvDatos);
             this.grpConsulta.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpConsulta.Location = new System.Drawing.Point(12, 12);
@@ -102,6 +84,7 @@
             this.grpConsulta.TabIndex = 7;
             this.grpConsulta.TabStop = false;
             this.grpConsulta.Text = "Consulta de datos";
+            this.grpConsulta.Enter += new System.EventHandler(this.grpConsulta_Enter);
             // 
             // dgvDatos
             // 
@@ -146,14 +129,39 @@
             this.Deuda.Name = "Deuda";
             this.Deuda.Width = 150;
             // 
+            // lblDeuda
+            // 
+            this.lblDeuda.AutoSize = true;
+            this.lblDeuda.Location = new System.Drawing.Point(601, 385);
+            this.lblDeuda.Name = "lblDeuda";
+            this.lblDeuda.Size = new System.Drawing.Size(14, 24);
+            this.lblDeuda.TabIndex = 1;
+            this.lblDeuda.Text = ".";
+            // 
+            // lblPromedioDeuda
+            // 
+            this.lblPromedioDeuda.AutoSize = true;
+            this.lblPromedioDeuda.Location = new System.Drawing.Point(601, 497);
+            this.lblPromedioDeuda.Name = "lblPromedioDeuda";
+            this.lblPromedioDeuda.Size = new System.Drawing.Size(14, 24);
+            this.lblPromedioDeuda.TabIndex = 2;
+            this.lblPromedioDeuda.Text = ".";
+            this.lblPromedioDeuda.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // lblCant
+            // 
+            this.lblCant.AutoSize = true;
+            this.lblCant.Location = new System.Drawing.Point(601, 441);
+            this.lblCant.Name = "lblCant";
+            this.lblCant.Size = new System.Drawing.Size(14, 24);
+            this.lblCant.TabIndex = 3;
+            this.lblCant.Text = ".";
+            // 
             // frmListadoClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(746, 616);
-            this.Controls.Add(this.txtCantidad);
-            this.Controls.Add(this.txtPromedio);
-            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.lblPromedio);
             this.Controls.Add(this.lblTotal);
@@ -161,7 +169,9 @@
             this.Name = "frmListadoClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmListadoClientes";
+            this.Load += new System.EventHandler(this.frmListadoClientes_Load);
             this.grpConsulta.ResumeLayout(false);
+            this.grpConsulta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -169,10 +179,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtCantidad;
-        private System.Windows.Forms.TextBox txtPromedio;
-        private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Label lblPromedio;
         private System.Windows.Forms.Label lblTotal;
@@ -182,5 +188,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Limite;
         private System.Windows.Forms.DataGridViewTextBoxColumn Deuda;
+        private System.Windows.Forms.Label lblCant;
+        private System.Windows.Forms.Label lblPromedioDeuda;
+        private System.Windows.Forms.Label lblDeuda;
     }
 }
