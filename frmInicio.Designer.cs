@@ -53,13 +53,13 @@
             // acercaDeToolStripMenuItem
             // 
             this.acercaDeToolStripMenuItem.Name = "acercaDeToolStripMenuItem";
-            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.acercaDeToolStripMenuItem.Size = new System.Drawing.Size(196, 34);
             this.acercaDeToolStripMenuItem.Text = "Acerca de ";
             // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(196, 34);
             this.cerrarToolStripMenuItem.Text = "Cerrar";
             // 
             // clientesToolStripMenuItem
@@ -131,6 +131,7 @@
             this.Name = "frmInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmInicio_Load);
             this.menInicio.ResumeLayout(false);
             this.menInicio.PerformLayout();
