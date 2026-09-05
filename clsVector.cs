@@ -66,12 +66,12 @@ namespace pryManasseroRegistroVectores
                 }
                 else
                 {
-                    MessageBox.Show("El código propuesto ya es existente", "Aviso", MessageBoxButtons.OK);
+                    MessageBox.Show("El código propuesto ya es existente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             else
             {
-                MessageBox.Show("Se ha alcanzado el límite de clientes", "aviso", MessageBoxButtons.OK);
+                MessageBox.Show("Se ha alcanzado el límite de clientes", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
