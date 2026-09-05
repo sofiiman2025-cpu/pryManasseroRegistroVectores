@@ -45,5 +45,10 @@ namespace pryManasseroRegistroVectores
         {
             // Inicialización al cargar el formulario; no abrir el mismo formulario aquí.
         }
+
+        private void cerrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close(); // Cierra el formulario actual
+        }
     }
 }
