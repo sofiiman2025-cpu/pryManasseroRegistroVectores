@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,7 +11,7 @@ namespace pryManasseroRegistroVectores
 {
     internal class clsVector
     {
-        
+        public string nombreAr = "../../Archivos/Clientes.csv";
         public struct RegCliente
         {
             public string usuario;
@@ -17,225 +19,297 @@ namespace pryManasseroRegistroVectores
             public decimal limite;
             public decimal deuda;
         };
-        public static RegCliente[] clientes = new RegCliente[5];
+        public static RegCliente[] Clientes = new RegCliente[5];
 
         public static int indice = 0;
 
-        public static void Precarga()
+
+
+        public void Grabar(string cod, string deu, string nom, string lim)
         {
-            clsVector.clientes[clsVector.indice].codigo = 1;
-            clsVector.clientes[clsVector.indice].usuario = "Sofia";
-            clsVector.clientes[clsVector.indice].limite = 100;
-            clsVector.clientes[clsVector.indice].deuda = 700;
-            clsVector.indice++;
-            clsVector.clientes[clsVector.indice].codigo = 2;
-            clsVector.clientes[clsVector.indice].usuario = "Martina";
-            clsVector.clientes[clsVector.indice].limite = 200;
-            clsVector.clientes[clsVector.indice].deuda = 800;
-            clsVector.indice++;
-            clsVector.clientes[clsVector.indice].codigo = 3;
-            clsVector.clientes[clsVector.indice].usuario = "Lara";
-            clsVector.clientes[clsVector.indice].limite = 300;
-            clsVector.clientes[clsVector.indice].deuda = 1500;
-            clsVector.indice++;
-            clsVector.clientes[clsVector.indice].codigo = 4;
-            clsVector.clientes[clsVector.indice].usuario = "Tomás";
-            clsVector.clientes[clsVector.indice].limite = 400;
-            clsVector.clientes[clsVector.indice].deuda = 2000;
-            clsVector.indice++;
+            StreamWriter ad = new StreamWriter(nombreAr, true);
+
+            ad.Write(cod);
+            ad.Write(";");
+            ad.Write(nom);
+            ad.Write(";");
+            ad.Write(deu);
+            ad.Write(";");
+            ad.WriteLine(lim);
+
+            ad.Close();
+            ad.Dispose();
+
         }
 
-        public void Agregar(string cod, string deu, string usu, string lim)
-        {
-            if (indice < clientes.Length)
-            {
-               
-                Int32 i = 0;
-                while (i < indice && clientes[i].codigo != Convert.ToInt32(cod))
-                {
-                    i++;
-                }
 
-                if (indice == i)
-                {
-                    clientes[indice].codigo = Convert.ToInt32(cod);
-                    clientes[indice].deuda = Convert.ToDecimal(deu);
-                    clientes[indice].usuario = usu;
-                    clientes[indice].limite = Convert.ToDecimal(lim);
-                    indice++;
-                }
-                else
-                {
-                    MessageBox.Show("El código propuesto ya es existente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-            else
+        public void Listar(DataGridView Grilla)
+        {
+            string DatosLeidos = "";
+            string[] vcDatos = new string[4];
+            MessageBox.Show(Path.GetFullPath(nombreAr));
+            StreamReader ad = new StreamReader(nombreAr);
+
+
+            DatosLeidos = ad.ReadLine();
+
+            while (DatosLeidos != null)
             {
-                MessageBox.Show("Se ha alcanzado el límite de clientes", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                vcDatos = DatosLeidos.Split(';');
+                Grilla.Rows.Add(vcDatos[0], vcDatos[1], vcDatos[2], vcDatos[3]);
+                DatosLeidos = ad.ReadLine();
             }
+
+
+            ad.Close();
+
         }
 
-        public void OrdenarCodigoAscendente()
+        public int CantClientes()
         {
-            RegCliente aux;
-            Int32 i = 0;
+            int c = 0;
+
+            string DatosLeidos = "";
+
+            StreamReader ad = new StreamReader(nombreAr);
+
+            DatosLeidos = ad.ReadLine();
+
+
+            while (DatosLeidos != null)
+            {
+                c++;
+                DatosLeidos = ad.ReadLine();
+            }
+            ad.Close();
+            ad.Dispose();
+            return c;
+        }
+        public decimal Tdeuda()
+        {
+            decimal total = 0;
+            string DatosLeidos = "";
+            string[] vcDatos = new string[4];
+
+            StreamReader ad = new StreamReader(nombreAr);
+
+            DatosLeidos = ad.ReadLine();
+
+            while (DatosLeidos != null)
+            {
+                vcDatos = DatosLeidos.Split(';');
+
+                total = total + Convert.ToDecimal(vcDatos[2]);
+
+                DatosLeidos = ad.ReadLine();
+            }
+            ad.Close();
+            ad.Dispose();
+
+            return total;
+        }
+        public decimal Promedio()
+        {
+            decimal total = 0;
+            string DatosLeidos = "";
+            string[] vcDatos = new string[4];
             Int32 c = 0;
 
 
+            StreamReader ad = new StreamReader(nombreAr);
+
+            DatosLeidos = ad.ReadLine();
+
+            while (DatosLeidos != null)
+            {
+                vcDatos = DatosLeidos.Split(';');
+                c++;
+
+                total = total + Convert.ToDecimal(vcDatos[2]);
+
+                DatosLeidos = ad.ReadLine();
+            }
+
+            ad.Close();
+            ad.Dispose();
+
+            return total / c;
+
+        }
+        public void ListarDeudores(DataGridView Grilla)
+        {
+            string DatosLeidos = "";
+            string[] vcDatos = new string[4];
+
+            StreamReader ad = new StreamReader(nombreAr);
+
+            DatosLeidos = ad.ReadLine();
+
+            while (DatosLeidos != null)
+            {
+                vcDatos = DatosLeidos.Split(';');
+                if (Convert.ToDecimal(vcDatos[2]) > 0)
+                {
+                    Grilla.Rows.Add(vcDatos[0], vcDatos[1], vcDatos[2], vcDatos[3]);
+                }
+
+                DatosLeidos = ad.ReadLine();
+            }
+
+
+            ad.Close();
+            ad.Dispose();
+
+        }
+        public decimal CantidadDeudores()
+        {
+
+            string DatosLeidos = "";
+            string[] vcDatos = new string[4];
+            Int32 c = 0;
+
+
+            StreamReader ad = new StreamReader(nombreAr);
+
+            DatosLeidos = ad.ReadLine();
+
+            while (DatosLeidos != null)
+            {
+                vcDatos = DatosLeidos.Split(';');
+                if (Convert.ToDecimal(vcDatos[2]) > 0)
+                {
+                    c++;
+                }
+
+                DatosLeidos = ad.ReadLine();
+
+            }
+
+            ad.Close();
+            ad.Dispose();
+
+            return c;
+        }
+        public decimal PromedioDeudores()
+        {
+            decimal total = 0;
+            string DatosLeidos = "";
+            string[] vcDatos = new string[4];
+            Int32 c = 0;
+
+
+            StreamReader ad = new StreamReader(nombreAr);
+
+            DatosLeidos = ad.ReadLine();
+
+            while (DatosLeidos != null)
+            {
+                vcDatos = DatosLeidos.Split(';');
+                if (Convert.ToDecimal(vcDatos[2]) > 0)
+                {
+                    total = total + Convert.ToDecimal(vcDatos[2]);
+                    c++;
+                }
+
+                DatosLeidos = ad.ReadLine();
+            }
+
+            ad.Close();
+            ad.Dispose();
+
+            return total / c;
+
+        }
+
+        public void Reporte()
+        {
+            string DatosLeidos = "";
+            string[] vcDatos = new string[4];
+
+            Int32 cant = 0;
+            Decimal total = 0;
+
+            StreamWriter reporte = new StreamWriter("../../Archivo/Reporte.csv", false, Encoding.UTF8);
+            StreamReader ad = new StreamReader(nombreAr);
+
+            reporte.WriteLine("Listado de Clientes");
+            reporte.WriteLine("");
+            reporte.WriteLine("Codigo;Nombre;Deuda;Limite");
+
+            DatosLeidos = ad.ReadLine();
+
+            while (DatosLeidos != null)
+            {
+                vcDatos = DatosLeidos.Split(';');
+                reporte.Write(vcDatos[0] + ";");
+                reporte.Write(vcDatos[1] + ";");
+                reporte.Write(vcDatos[2] + ";");
+                reporte.WriteLine(vcDatos[3] + ";");
+                cant++;
+                total = total + Convert.ToDecimal(vcDatos[2]);
+                DatosLeidos = ad.ReadLine();
+            }
+
+            ad.Close();
+            ad.Dispose();
+            reporte.WriteLine("");
+            reporte.Write("Total de deuda: ;;");
+            reporte.WriteLine(total);
+            reporte.Write("Cantidad de clientes:;;");
+            reporte.WriteLine(cant);
+            reporte.Write("Promedio de deuda:;;");
+            reporte.WriteLine(total / cant);
+            reporte.Close();
+            reporte.Dispose();
+        }
+
+        public void OrdenarCodigoAscendente(DataGridView Grilla)
+        {
+            string DatosLeidos = "";
+            string[] vcDatos = new string[4];
+            StreamReader ad = new StreamReader(nombreAr);
+            DatosLeidos = ad.ReadLine();
+
+            RegCliente Aux;
+            Int32 i = 0;
+            Int32 c = 0;
+            while (DatosLeidos != null)
+            {
+                vcDatos = DatosLeidos.Split(';');
+
+                Clientes[indice].codigo = Convert.ToInt32(vcDatos[0]);
+                Clientes[indice].usuario= vcDatos[1];
+                Clientes[indice].deuda = Convert.ToDecimal(vcDatos[2]);
+                Clientes[indice].limite = Convert.ToDecimal(vcDatos[3]);
+                indice++;
+
+                DatosLeidos = ad.ReadLine();
+
+            }
             while (i < indice - 1)
             {
                 c = 0;
-
                 while (c < indice - 1)
                 {
-                    if (clientes[c].codigo > clientes[c + 1].codigo)
+                    if (Clientes[c].codigo > Clientes[c + 1].codigo)
                     {
-                        aux = clientes[c];
-                        clientes[c] = clientes[c + 1];
-                        clientes[c + 1] = aux;
-
+                        Aux = Clientes[c];
+                        Clientes[c] = Clientes[c + 1];
+                        Clientes[c + 1] = Aux;
                     }
                     c++;
                 }
                 i++;
             }
-        }
-
-        public void OrdenarCodigoDescendente()
-        {
-            RegCliente aux;
-            Int32 i = 0;
-            Int32 c = 0;
-
-
-            while (i < indice - 1)
+            for (Int32 z = 0; z < indice; z++)
             {
-                c = 0;
-
-                while (c < indice - 1)
-                {
-                    if (clientes[c].codigo < clientes[c + 1].codigo)
-                    {
-                        aux = clientes[c];
-                        clientes[c] = clientes[c + 1];
-                        clientes[c + 1] = aux;
-
-                    }
-                    c++;
-                }
-                i++;
+                Grilla.Rows.Add(Clientes[z].codigo, Clientes[z].usuario
+                    , Clientes[z].deuda, Clientes[z].limite);
             }
+            ad.Close();
+            ad.Dispose();
         }
-
-        public void OrdenarNombreAscendente()
-        {
-            RegCliente aux;
-
-            for (int i = 0; i < indice - 1; i++)
-            {
-                for (int j = 0; j < indice - 1; j++)
-                {
-                    if (string.Compare(clientes[j].usuario, clientes[j + 1].usuario) > 0)
-                    {
-                        aux = clientes[j];
-                        clientes[j] = clientes[j + 1];
-                        clientes[j + 1] = aux;
-                    }
-                }
-            }
-        }
-
-        public void OrdenarNombreDescendente()
-        {
-                        RegCliente aux;
-
-            for (int i = 0; i < indice - 1; i++)
-            {
-                for (int j = 0; j < indice - 1; j++)
-                {                     if (string.Compare(clientes[j].usuario, clientes[j + 1].usuario) < 0)
-                    {
-                        aux = clientes[j];
-                        clientes[j] = clientes[j + 1];
-                        clientes[j + 1] = aux;
-                    }
-                }
-
-            }
-
-        }
-
-        public void OrdenarDeudaAscendente()
-        {
-                        RegCliente aux;
-
-            for (int i = 0; i < indice - 1; i++)
-            {
-                for (int j = 0; j < indice - 1; j++) 
-                {
-                if (clientes[j].deuda > clientes[j + 1].deuda)
-                    {
-                        aux = clientes[j];
-                        clientes[j] = clientes[j + 1];
-                        clientes[j + 1] = aux;
-                    }
-
-                }
-            
-            }
-
-        }
-
-        public void OrdenarDeudaDescendente()
-        {
-            RegCliente aux;
-            for(int i = 0;i < indice - 1;i++)
-            {
-                for(int j = 0;j < indice - 1;j++)
-                {
-                    if(clientes[j].deuda < clientes[j + 1].deuda)
-                    {
-                        aux = clientes[j];
-                        clientes[j] = clientes[j + 1];
-                        clientes[j + 1] = aux;
-                    }
-                }
-            }
-        }
-        public void OrdenarLimiteAscendente()
-        {
-            RegCliente aux;
-
-            for (int i = 0; i < indice - 1; i++)
-            {
-                for (int j = 0; j < indice - 1; j++)
-                {
-                    if (clientes[j].limite > clientes[j + 1].limite)
-                    {
-                        aux = clientes[j];
-                        clientes[j] = clientes[j + 1];
-                        clientes[j + 1] = aux;
-                    }
-                }
-            }
-
-        }
-
-        public void OrdenarLimiteDescendente()
-        { 
-            RegCliente aux;
-            for(int i = 0;i < indice - 1;i++)
-            {
-                for(int j = 0;j < indice - 1;j++)
-                {
-                    if(clientes[j].limite < clientes[j + 1].limite)
-                    {
-                        aux = clientes[j];
-                        clientes[j] = clientes[j + 1];
-                        clientes[j + 1] = aux;
-                    }
-                }
-            }
-        }
-    
     }
 }
+    
+
