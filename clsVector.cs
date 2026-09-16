@@ -24,6 +24,69 @@ namespace pryManasseroRegistroVectores
         public static int indice = 0;
 
 
+        private void CargarVector()
+        {
+            string DatosLeidos = "";
+            string[] vcDatos = new string[4];
+            StreamReader ad = new StreamReader(nombreAr);
+            DatosLeidos = ad.ReadLine();
+            while (DatosLeidos != null)
+            {
+                vcDatos = DatosLeidos.Split(';');
+                Clientes[indice].codigo = Convert.ToInt32(vcDatos[0]);
+                Clientes[indice].usuario = vcDatos[1];
+                Clientes[indice].deuda = Convert.ToDecimal(vcDatos[2]);
+                Clientes[indice].limite = Convert.ToDecimal(vcDatos[3]);
+                indice++;
+                DatosLeidos = ad.ReadLine();
+            }
+            ad.Close();
+            ad.Dispose();
+        }
+
+        private void OrdenarVector()
+        {
+            RegCliente Aux;
+
+            for (Int32 c = 0; c < indice - 1; c++)
+            {
+                for (Int32 i = 0; i < indice - 1; i++)
+                {
+                    if (Clientes[i].codigo > Clientes[i + 1].codigo)
+                    {
+                        Aux = Clientes[i];
+                        Clientes[i] = Clientes[i + 1];
+                        Clientes[i + 1] = Aux;
+
+                    }
+                }
+            }
+
+        }
+
+        private void ReescribirArchivo()
+        {
+            StreamWriter ad = new StreamWriter(nombreAr, false);
+            for (Int32 i = 0; i < indice; i++)
+            {
+                ad.Write(Clientes[i].codigo);
+                ad.Write(";");
+                ad.Write(Clientes[i].usuario);
+                ad.Write(";");
+                ad.Write(Clientes[i].deuda);
+                ad.Write(";");
+                ad.WriteLine(Clientes[i].limite);
+            }
+            ad.Close();
+            ad.Dispose();
+        }
+
+        public void OrdenarArchivo()
+        {
+            CargarVector();
+            OrdenarVector();
+            ReescribirArchivo();
+        }
 
         public void Grabar(string cod, string deu, string nom, string lim)
         {
