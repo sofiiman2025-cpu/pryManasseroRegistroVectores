@@ -19,7 +19,7 @@ namespace pryManasseroRegistroVectores
             public decimal limite;
             public decimal deuda;
         };
-        public static RegCliente[] Clientes = new RegCliente[5];
+        public static RegCliente[] clientes = new RegCliente[5];
 
         public static int indice = 0;
 
@@ -33,10 +33,10 @@ namespace pryManasseroRegistroVectores
             while (DatosLeidos != null)
             {
                 vcDatos = DatosLeidos.Split(';');
-                Clientes[indice].codigo = Convert.ToInt32(vcDatos[0]);
-                Clientes[indice].usuario = vcDatos[1];
-                Clientes[indice].deuda = Convert.ToDecimal(vcDatos[2]);
-                Clientes[indice].limite = Convert.ToDecimal(vcDatos[3]);
+                clientes[indice].codigo = Convert.ToInt32(vcDatos[0]);
+                clientes[indice].usuario = vcDatos[1];
+                clientes[indice].deuda = Convert.ToDecimal(vcDatos[2]);
+                clientes[indice].limite = Convert.ToDecimal(vcDatos[3]);
                 indice++;
                 DatosLeidos = ad.ReadLine();
             }
@@ -52,11 +52,11 @@ namespace pryManasseroRegistroVectores
             {
                 for (Int32 i = 0; i < indice - 1; i++)
                 {
-                    if (Clientes[i].codigo > Clientes[i + 1].codigo)
+                    if (clientes[i].codigo > clientes[i + 1].codigo)
                     {
-                        Aux = Clientes[i];
-                        Clientes[i] = Clientes[i + 1];
-                        Clientes[i + 1] = Aux;
+                        Aux = clientes[i];
+                        clientes[i] = clientes[i + 1];
+                        clientes[i + 1] = Aux;
 
                     }
                 }
@@ -69,13 +69,13 @@ namespace pryManasseroRegistroVectores
             StreamWriter ad = new StreamWriter(nombreAr, false);
             for (Int32 i = 0; i < indice; i++)
             {
-                ad.Write(Clientes[i].codigo);
+                ad.Write(clientes[i].codigo);
                 ad.Write(";");
-                ad.Write(Clientes[i].usuario);
+                ad.Write(clientes[i].usuario);
                 ad.Write(";");
-                ad.Write(Clientes[i].deuda);
+                ad.Write(clientes[i].deuda);
                 ad.Write(";");
-                ad.WriteLine(Clientes[i].limite);
+                ad.WriteLine(clientes[i].limite);
             }
             ad.Close();
             ad.Dispose();
@@ -86,6 +86,47 @@ namespace pryManasseroRegistroVectores
             CargarVector();
             OrdenarVector();
             ReescribirArchivo();
+        }
+
+        // Métodos de ordenamiento utilizados por frmGestion
+        public void OrdenarCodigoAscendente()
+        {
+            Array.Sort(clientes, 0, indice, Comparer<RegCliente>.Create((a, b) => a.codigo.CompareTo(b.codigo)));
+        }
+
+        public void OrdenarCodigoDescendente()
+        {
+            Array.Sort(clientes, 0, indice, Comparer<RegCliente>.Create((a, b) => b.codigo.CompareTo(a.codigo)));
+        }
+
+        public void OrdenarNombreAscendente()
+        {
+            Array.Sort(clientes, 0, indice, Comparer<RegCliente>.Create((a, b) => string.Compare(a.usuario, b.usuario)));
+        }
+
+        public void OrdenarNombreDescendente()
+        {
+            Array.Sort(clientes, 0, indice, Comparer<RegCliente>.Create((a, b) => string.Compare(b.usuario, a.usuario)));
+        }
+
+        public void OrdenarDeudaAscendente()
+        {
+            Array.Sort(clientes, 0, indice, Comparer<RegCliente>.Create((a, b) => a.deuda.CompareTo(b.deuda)));
+        }
+
+        public void OrdenarDeudaDescendente()
+        {
+            Array.Sort(clientes, 0, indice, Comparer<RegCliente>.Create((a, b) => b.deuda.CompareTo(a.deuda)));
+        }
+
+        public void OrdenarLimiteAscendente()
+        {
+            Array.Sort(clientes, 0, indice, Comparer<RegCliente>.Create((a, b) => a.limite.CompareTo(b.limite)));
+        }
+
+        public void OrdenarLimiteDescendente()
+        {
+            Array.Sort(clientes, 0, indice, Comparer<RegCliente>.Create((a, b) => b.limite.CompareTo(a.limite)));
         }
 
         public void Grabar(string cod, string deu, string nom, string lim)
@@ -340,10 +381,10 @@ namespace pryManasseroRegistroVectores
             {
                 vcDatos = DatosLeidos.Split(';');
 
-                Clientes[indice].codigo = Convert.ToInt32(vcDatos[0]);
-                Clientes[indice].usuario= vcDatos[1];
-                Clientes[indice].deuda = Convert.ToDecimal(vcDatos[2]);
-                Clientes[indice].limite = Convert.ToDecimal(vcDatos[3]);
+                clientes[indice].codigo = Convert.ToInt32(vcDatos[0]);
+                clientes[indice].usuario= vcDatos[1];
+                clientes[indice].deuda = Convert.ToDecimal(vcDatos[2]);
+                clientes[indice].limite = Convert.ToDecimal(vcDatos[3]);
                 indice++;
 
                 DatosLeidos = ad.ReadLine();
@@ -354,11 +395,11 @@ namespace pryManasseroRegistroVectores
                 c = 0;
                 while (c < indice - 1)
                 {
-                    if (Clientes[c].codigo > Clientes[c + 1].codigo)
+                    if (clientes[c].codigo > clientes[c + 1].codigo)
                     {
-                        Aux = Clientes[c];
-                        Clientes[c] = Clientes[c + 1];
-                        Clientes[c + 1] = Aux;
+                        Aux = clientes[c];
+                        clientes[c] = clientes[c + 1];
+                        clientes[c + 1] = Aux;
                     }
                     c++;
                 }
@@ -366,8 +407,8 @@ namespace pryManasseroRegistroVectores
             }
             for (Int32 z = 0; z < indice; z++)
             {
-                Grilla.Rows.Add(Clientes[z].codigo, Clientes[z].usuario
-                    , Clientes[z].deuda, Clientes[z].limite);
+                Grilla.Rows.Add(clientes[z].codigo, clientes[z].usuario
+                    , clientes[z].deuda, clientes[z].limite);
             }
             ad.Close();
             ad.Dispose();
